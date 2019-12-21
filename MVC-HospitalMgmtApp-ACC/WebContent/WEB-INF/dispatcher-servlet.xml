@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+<!-- cfg Handler Mapping -->
+	<bean id="suhl"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="home.htm">pvc</prop>
+			    <prop key="search.htm">pisc</prop>
+			</props>
+		</property>
+	</bean>
+
+   <!-- cfg ParameterizibleViewController -->
+	<bean id="pvc"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="home"></property>
+	</bean>
+   <!--cfg controller  -->  
+   <bean id="pisc" class="com.nt.controller.PatientInfoSearchController">
+       <constructor-arg ref="service"></constructor-arg>
+   </bean>
+
+      <!-- cfg ViewResolver -->
+	<bean id="vr"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+
+
+
+
+</beans>
